@@ -1,0 +1,44 @@
+networks:
+  management-net:
+    driver: bridge
+  sandbox-net:
+    driver: bridge
+    internal: true 
+
+services:
+  orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile.orchestrator
+    container_name: decepticon_orchestrator
+    networks:
+      - management-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./orchestrator_code:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: tail -f /dev/null
+
+  sandbox:
+    build:
+      context: .
+      dockerfile: Dockerfile.sandbox
+    container_name: decepticon_sandbox
+    networks:
+      - sandbox-net
+    command: tail -f /dev/null
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+  target:
+    build:
+      context: .
+      dockerfile: Dockerfile.target
+    container_name: decepticon_target
+    privileged: true
+    networks:
+      - sandbox-net
+    ports:
+      - "8080:80"

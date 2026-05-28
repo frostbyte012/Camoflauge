@@ -1,0 +1,9 @@
+FROM vulnerables/web-dvwa
+
+# 1. Wipe the old repos and point ONLY to the main Stretch archive
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+
+# 2. Force apt to ignore expired keys and unauthenticated warnings for the EOL OS
+RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::AllowInsecureRepositories=true update && \
+    apt-get install -y --allow-unauthenticated iptables && \
+    apt-get clean
