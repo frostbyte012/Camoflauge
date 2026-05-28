@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎭 Camouflage
+# Camouflage
 
 ### Autonomous Red vs. Blue AI Cyber Arena
 
@@ -14,7 +14,7 @@
 
 [Features](#-features) · [Architecture](#-architecture) · [Installation](#-installation) · [Deployment](#-deployment) · [Telemetry](#-telemetry) · [Roadmap](#-roadmap)
 
-<img src="path/to/your/camouflage_dashboard.png" alt="Camouflage C2 Dashboard" width="850"/>
+<img src="https://github.com/frostbyte012/Camoflauge/blob/main/assets/demo_vid.gif" width="850"/>
 
 *Live Command & Control Terminal UI*
 
